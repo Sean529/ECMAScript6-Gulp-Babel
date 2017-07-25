@@ -46,7 +46,7 @@ npm install --save-dev browser-sync
 2. 创建 index.js 文件 （ES6）
 3. 创建 index.html 文件 引入 index.js （编译后的js）
 ```
-<script src = "dist/index.js"></script>
+<script src = "dist/es6.js"></script>
 ```
 4. 创建 gulpfile.js文件
 ```
@@ -73,8 +73,10 @@ gulp.task('serve', ['es6'], function () {
     browserSync.init({
         server: './'
     })
-    gulp.watch(['src/index.js'], ['es6'] // 执行es6
-    gulp.watch("*.html").on('change', browserSync.reload) // 会在编译完es6后，更新页面
+    gulp.watch(
+        ['src/index.js'], ['es6'], // 执行es6
+        gulp.watch("*.html").on('change', browserSync.reload) // 会在编译完es6后，更新页面
+    )
 })
 
 gulp.task('default', ['serve']) // 定义默认任务
